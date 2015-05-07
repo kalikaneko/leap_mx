@@ -48,6 +48,7 @@ from twisted.python import filepath, log
 
 from zope.interface import implements
 
+from leap.common.files import mkdir_p
 from leap.soledad.common.crypto import EncryptionSchemes
 from leap.soledad.common.crypto import ENC_JSON_KEY
 from leap.soledad.common.crypto import ENC_SCHEME_KEY
@@ -145,7 +146,7 @@ class MailReceiver(Service):
         directory = filepath.FilePath(dirname)
         try:
             if not directory.isdir():
-                raise OSError("Not a directory: '%s'" % directory.path)
+                mkdir_p(dirname)
             self.wm.watch(
                 directory,
                 inotify.IN_CREATE,
