@@ -212,7 +212,7 @@ class MailReceiver(Service):
                     'X-Leap-Provenance',
                     email.utils.formatdate(),
                     pubkey=key["keyid"])
-                data = {'incoming': True, 'content': message.as_string()}
+                data = {'incoming': True, 'content': message_as_string}
             doc.content = {
                 self.INCOMING_KEY: True,
                 self.ERROR_DECRYPTING_KEY: False,
